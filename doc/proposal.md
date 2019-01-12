@@ -1,9 +1,9 @@
-### Section 3: Usage scenario & tasks
+## Usage scenario & tasks
 
 Zoe is an analyst from Ministry of Finance and she was assigned to review the budget of the policy patrol cars for 2018. She is curious if the increase of visible police patrols leads to less crime. She wants to be able to [explore] a dataset in order to [compare] the crime rates over time across some major cities in United States, and [identify] the cities with larger decrease in crime rates over the last ten years, then she would continue to do a cross-research on their police patrols situation. When Zoe logs on to the "Crime Data Visualizer app", she will see an overview of the dataset to navigate from, such as the timeline, a list of the cities, and a list of major types of crimes. After selected on the year 2015 and view of crime rate, she saw the entire ranking of the major cities in United States. Then she may randomly selected one city with lower crime rate and one city with higher crime rate, Austin(TX) and Baltimore (MD). From the bottom half of the app, Zoe may choose to view the data in the past 20 years, which is 1995 to 2015, for the two cities she selected. The chart showed her that the crime rate in Austin has been relatively steady for the past 20 years, while Baltimore did have a visible decrease from 1999 to 2005. From the information she got from the app, Zoe could go forward on the cross-research, to see if Baltimore had increased its police patrols during the specific time period.
 
 
-## Section 4: Description of your app & sketch (20%)
+## Description of app & sketch
 
 The landing page of the app will have two sections.
 
