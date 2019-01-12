@@ -15,4 +15,4 @@ The second section allows the user to do a cross-city comparison, with selectabl
 
 The example sketch shows the visual design of the app.
 
-![dashBoard](appSketch.png)
+![dashBoard](../img/appSketch.png)
