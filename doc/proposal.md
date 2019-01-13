@@ -1,14 +1,14 @@
 # Project Milestone 1: Proposal
 
 
-### Section 1: Overview
+## Section 1: Overview
 
 Crime is a problem in major cities where it causes negative emotional and physical effects requires costly solutions for public tax payers. Legislation is needed for criminal law enforcement, prevention, regulation and decriminalization. This app will help identify trends of different types of crimes via filtering cities and in respect to population of that city in a year in interest.
 
 The app provides the user visualization to explore trends on which specific type of crime is increasing or decreasing in which city and provides insights that can identify where to increase police patrols in certain cities. It also explores of how crime rates change in respect to city population.
 
 
-### Section 2: Description of the data
+## Section 2: Description of the data
 
 
 Data consists of 2831 records from different cities for different types of crimes. Each sample has 14 variables; year the data was collected (Year), from which city (City) and population of the city (Total_pop), total number of homicides, rapes, robberies, aggressive violence (homs_sum, rape_sum,	rob_sum,	agg_ass_sum,	violent_crime), month of the year (month) as well as the number of violent crimes per 100,000 people (violent_per_100k, homs_per_100k, rape_per_100k, rob_per_100k, agg_ass_per_100k).  
@@ -18,7 +18,7 @@ Data consists of 2831 records from different cities for different types of crime
 Zoe is an analyst from the Ministry of Finance and she was assigned to review the budget of the policy patrol cars for 2018. She is curious if the increase of visible police patrols leads to less crime. She wants to be able to [explore] a dataset in order to [compare] the crime rates over time across some major cities in United States, and [identify] the cities with larger decrease in crime rates over the last ten years, then she would continue to do a cross-research on their police patrols situation. When Zoe logs on to the "Crime Data Visualizer app", she will see an overview of the dataset to navigate from, such as the timeline, a list of the cities, and a list of major types of crimes. After selected on the year 2015 and view of crime rate, she saw the entire ranking of the major cities in United States. Then she may randomly selected one city with lower crime rate and one city with higher crime rate, Austin(TX) and Baltimore (MD). From the bottom half of the app, Zoe may choose to view the data over the past 20 years (1995 to 2015) for the two cities she selected. The chart showed her that the crime rate in Austin has been relatively steady for the past 20 years, while Baltimore did have a visible decrease from 1999 to 2005. From the information she got from the app, Zoe cross refernce, to see if Baltimore had increased its police patrols during the specific time period.
 
 
-## Description of app & sketch
+## Section 4: Description of app & sketch
 
 The landing page of the app will have two sections.
 
