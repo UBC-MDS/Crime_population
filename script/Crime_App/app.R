@@ -30,7 +30,7 @@ tidy_data <- (dat %>%
             agg_ass_per_100k))
 
 
-dat <- tidy_data %>% filter(months_reported == 12)
+tidy_data <- tidy_data %>% filter(months_reported == 12)
 sum(is.na(tidy_data))
 
 cities <- unique(tidy_data$department_name)
@@ -52,41 +52,45 @@ ui <- fluidPage(
     sidebarPanel(
       selectInput("department_name", "SELECT CITY",
                   choices = cities,
-                  selected = "Atlanta"),
+                  selected = "Atlanta",
+                  selectize = TRUE),
       br(),
       
       sliderInput("year_input", "Year",
                   min = 1975, max = 2015, 
                   value = c(1975, 2015), 
-                  sep = ""),
+                  sep = "", step = 5),
       br(),
       
     # select crime type
     radioButtons("crime_type", 
                  "SELECT CRIME TYPE",
                  choices = crime,
-                 selected = "rape_per_100k"),
- 
+                 selected = "rape_per_100k")
+    ),
       mainPanel(plotOutput("plot_crime"))
 )
 )
-)
+
 
 
 # Define server logic required to draw a histogram
  server <- function(input, output) {
+   observe(print(input$department_name))
+   observe(print(input$crime_type))
+   observe(print(input$year_input))
    crime_filtered <- reactive(
-     dat %>% filter(cities ==  input$department_name,
+     tidy_data %>% filter(cities ==  input$department_name,
                     crime_type ==  input$crime_type,
                     year >= input$year_input[1] &
                       year <= input$year_input[2])
    )
+   observe(print(crime_filtered))
    
    output$plot_crime <- renderPlot(
      crime_filtered() %>% 
-       ggplot(aes_(input$year_input,
-                   input$crime_type, 
-                   input$department_name)) +
+       ggplot(aes(x = year,
+                   y = count_per_100k)) +
        geom_line()+
        labs(x = "Year", y = "Crime per 100k")
    )
