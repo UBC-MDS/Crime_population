@@ -49,9 +49,12 @@ ui <- fluidPage( # Application title
                  selectInput("department_name", "SELECT CITY",
                              choices = cities,
                              selected = "Atlanta",
+                             multiple = TRUE,
                              selectize = TRUE),
                  br(),
                  
+                 
+
                  sliderInput("year_input", "Year",
                              min = 1975, max = 2015, 
                              value = c(1975, 2015), 
@@ -102,7 +105,7 @@ server <- function(input, output) {
       ggplot(aes(y=count_per_100k,x=department_name)) +
       geom_bar(stat='identity') +
       theme(axis.text.x = element_text(angle = 90, hjust = 1))+
-      labs(y = "Crime per 100k population", x = "City"))
+      labs(y = "Crime rate per 100k population", x = "City"))
   
   #======================SECOND PANEL==================
   observe(print(input$department_name))
@@ -119,10 +122,11 @@ server <- function(input, output) {
   output$plot_crime <- renderPlot(
     crime_filtered2() %>% 
       ggplot(aes(x = year,
-                 y = count_per_100k)) +
+                 y = count_per_100k, 
+                 colour = department_name)) +
       geom_line()+
-      labs(x = "Year", y = "Crime per 100k")
-  )
+      labs(x = "Year", y = "Crime rate per 100k", colour = "City")
+    )
   
 }
 
