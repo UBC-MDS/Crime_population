@@ -105,7 +105,7 @@ server <- function(input, output) {
       ggplot(aes(y=count_per_100k,x=department_name)) +
       geom_bar(stat='identity') +
       theme(axis.text.x = element_text(angle = 90, hjust = 1))+
-      labs(y = "Crime per 100k population", x = "City"))
+      labs(y = "Crime rate per 100k population", x = "City"))
   
   #======================SECOND PANEL==================
   observe(print(input$department_name))
@@ -125,8 +125,8 @@ server <- function(input, output) {
                  y = count_per_100k, 
                  colour = department_name)) +
       geom_line()+
-      labs(x = "Year", y = "Crime per 100k")
-  )
+      labs(x = "Year", y = "Crime per 100k", colour = "City")
+    )
   
 }
 
