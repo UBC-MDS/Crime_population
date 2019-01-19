@@ -125,7 +125,7 @@ server <- function(input, output) {
                  y = count_per_100k, 
                  colour = department_name)) +
       geom_line()+
-      labs(x = "Year", y = "Crime per 100k", colour = "City")
+      labs(x = "Year", y = "Crime rate per 100k", colour = "City")
     )
   
 }
