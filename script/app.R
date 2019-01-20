@@ -8,8 +8,6 @@ library(plotly)
 library(DT)
 library(forcats)
 
-
-
 #load cleaned data
 tidy_data <- read.csv("clean_data.csv")
 cities <- unique(tidy_data$department_name)
