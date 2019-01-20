@@ -8,7 +8,7 @@
 
 # Recent update
 
-Published link of the [shine app](https://yucelk.shinyapps.io/Crime_APP/)
+Published link of the [shine app](https://yucelk.shinyapps.io/Crime_APP/).
 
 Added the [proposal](https://github.com/UBC-MDS/Crime_population/blob/master/doc/proposal.md) of our app.
 
