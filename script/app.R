@@ -11,7 +11,7 @@ library(forcats)
 
 
 #load cleaned data
-tidy_data <- read.csv("../data/clean_data.csv")
+tidy_data <- read.csv("clean_data.csv")
 cities <- unique(tidy_data$department_name)
 years <- unique(tidy_data$year)
 crime <- unique(tidy_data$crime_type_rate)
@@ -65,7 +65,11 @@ ui <- fluidPage( # Application title
                  # select crime type
                  radioButtons("crime_type", 
                               "SELECT CRIME TYPE",
-                              choices = crime,
+                              choices = c("Total Violent" = "violent_per_100k",
+                              "Homicide" = "homs_per_100k",
+                              "Rape" = "rape_per_100k",
+                              "Robbery" = "rob_per_100k",
+                              "Aggravated Assault" = "agg_ass_per_100k"),
                               selected = "rape_per_100k")
     ),
     
