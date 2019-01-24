@@ -45,7 +45,7 @@ ui <- fluidPage( # Application title
                  #---------------SECOND PANEL-----------------------
                  hr(),
                  h3("Cross City Comparison"),
-                 selectInput("department_name", "SELECT CITY",
+                 selectInput("department_name", "SELECT MULTIPLE CITIES",
                              choices = cities,
                              selected = "Atlanta",
                              multiple = TRUE,
