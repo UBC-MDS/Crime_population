@@ -55,9 +55,9 @@ ui <- fluidPage( # Application title
                  
 
                  sliderInput("year_input", "Year",
-                             min = 1975, max = 2015, 
-                             value = c(1975, 2015), 
-                             sep = "", step = 5),
+                             min = 1985, max = 2015, 
+                             value = c(1985, 2015), 
+                             sep = "", step = 1),
                  br(),
                  
                  # select crime type
@@ -128,6 +128,7 @@ server <- function(input, output) {
                  y = count_per_100k, 
                  colour = department_name)) +
       geom_line()+
+      theme_bw()+
       labs(x = "Year", y = "Crime rate per 100k", colour = "City")
     )
   
