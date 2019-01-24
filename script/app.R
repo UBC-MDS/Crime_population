@@ -115,7 +115,7 @@ server <- function(input, output) {
   observe(print(input$crime_type))
   observe(print(input$year_input))
   crime_filtered2 <- reactive(
-    tidy_data %>% filter(department_name ==  input$department_name,
+    tidy_data %>% filter(department_name %in%  input$department_name,
                          crime_type_rate ==  input$crime_type,
                          year >= input$year_input[1] &
                            year <= input$year_input[2])
