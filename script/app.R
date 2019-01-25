@@ -45,7 +45,7 @@ ui <- fluidPage( # Application title
                  #---------------SECOND PANEL-----------------------
                  hr(),
                  h3("Cross City Comparison"),
-                 selectInput("department_name", "SELECT CITY",
+                 selectInput("department_name", "SELECT MULTIPLE CITIES",
                              choices = cities,
                              selected = "Atlanta",
                              multiple = TRUE,
@@ -55,9 +55,9 @@ ui <- fluidPage( # Application title
                  
 
                  sliderInput("year_input", "Year",
-                             min = 1975, max = 2015, 
-                             value = c(1975, 2015), 
-                             sep = "", step = 5),
+                             min = 1985, max = 2015, 
+                             value = c(1985, 2015), 
+                             sep = "", step = 1),
                  br(),
                  
                  # select crime type
@@ -115,7 +115,7 @@ server <- function(input, output) {
   observe(print(input$crime_type))
   observe(print(input$year_input))
   crime_filtered2 <- reactive(
-    tidy_data %>% filter(department_name ==  input$department_name,
+    tidy_data %>% filter(department_name %in%  input$department_name,
                          crime_type_rate ==  input$crime_type,
                          year >= input$year_input[1] &
                            year <= input$year_input[2])
@@ -128,6 +128,7 @@ server <- function(input, output) {
                  y = count_per_100k, 
                  colour = department_name)) +
       geom_line()+
+      theme_bw()+
       labs(x = "Year", y = "Crime rate per 100k", colour = "City")
     )
   
