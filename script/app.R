@@ -14,6 +14,8 @@ crime <- unique(tidy_data$crime_type_rate)
 # set up ui
 
 ui <- fluidPage(
+  # application theme
+  theme = shinytheme("united"),
   # Application title
   titlePanel(title = "Crime Data Visualizer (U.S.)"),
   
@@ -69,9 +71,9 @@ ui <- fluidPage(
                                                     "Rape" = "rape_per_100k",
                                                     "Robbery" = "rob_per_100k",
                                                     "Aggravated Assault" = "agg_ass_per_100k"),
-                                        selected = "rape_per_100k")),
+                                        selected = "violent_per_100k")),
                          mainPanel(
-                           plotOutput("plot_crime")))))
+                           plotlyOutput("plot_crime")))))
   
   
 )
@@ -132,15 +134,27 @@ server <- function(input, output) {
   )
   observe(print(crime_filtered2))
   
-  output$plot_crime <- renderPlot(
+  output$plot_crime <- renderPlotly(
     crime_filtered2() %>% 
       ggplot(aes(x = year,
                  y = count_per_100k, 
                  colour = City)) +
-      stat_summary(fun.y=mean, size=1, geom='line', aes(colour="Average crime rate of \nthe selected cities")) +
-      geom_line()+
+      geom_line() +
+      geom_point() +
+      labs(x = "Year", 
+           y = "Crime rate per 100k",
+           colour = "City") +
+      stat_summary(fun.y=mean, size=1, 
+                   geom='line', 
+                   aes(colour="Average crime rate of \nthe selected cities")) +
       theme_bw()+
-      labs(x = "Year", y = "Crime rate per 100k", colour = "City")
+      theme(axis.text.x = element_text(size = 14, family="serif"),
+            axis.text.y = element_text(size = 14, family="serif"),
+            axis.title.y = element_text(size = 18, family="serif"),
+            axis.title.x = element_text(size=18, family="serif"),
+            axis.line = element_blank(),
+            legend.text = element_text(size = 14, family="serif"),
+            legend.title = element_text(size = 18, face = "bold", family="serif"))
     )
   
 }
