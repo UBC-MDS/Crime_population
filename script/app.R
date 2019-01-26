@@ -127,6 +127,7 @@ server <- function(input, output) {
       ggplot(aes(x = year,
                  y = count_per_100k, 
                  colour = department_name)) +
+      stat_summary(fun.y=mean, size=1, geom='line', aes(colour="Average crime rate of \nthe selected cities")) +
       geom_line()+
       theme_bw()+
       labs(x = "Year", y = "Crime rate per 100k", colour = "City")
