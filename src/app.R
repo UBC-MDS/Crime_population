@@ -73,7 +73,7 @@ ui <- fluidPage(
                                                     "Aggravated Assault" = "agg_ass_per_100k"),
                                         selected = "violent_per_100k")),
                          mainPanel(
-                           plotOutput("violent_per_100k")))))
+                           plotOutput("plot_crime")))))
   
   
 )
@@ -139,10 +139,21 @@ server <- function(input, output) {
       ggplot(aes(x = year,
                  y = count_per_100k, 
                  colour = City)) +
-      stat_summary(fun.y=mean, size=1, geom='line', aes(colour="Average crime rate of \nthe selected cities")) +
-      geom_line()+
+      geom_line() +
+      labs(x = "Year", 
+           y = "Crime rate per 100k",
+           colour = "City") +
+      stat_summary(fun.y=mean, size=1, 
+                   geom='line', 
+                   aes(colour="Average crime rate of \nthe selected cities")) +
       theme_bw()+
-      labs(x = "Year", y = "Crime rate per 100k", colour = "City")
+      theme(axis.text.x = element_text(size = 18),
+            axis.text.y = element_text(size = 18),
+            axis.title.y = element_text(size = 22),
+            axis.title.x = element_text(size=22),
+            axis.line = element_blank(),
+            legend.text = element_text(size = 18),
+            legend.title = element_text(size = 22, face = "bold"))
     )
   
 }
