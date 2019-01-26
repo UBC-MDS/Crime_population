@@ -14,6 +14,8 @@ crime <- unique(tidy_data$crime_type_rate)
 # set up ui
 
 ui <- fluidPage(
+  # application theme
+  theme = shinytheme("united"),
   # Application title
   titlePanel(title = "Crime Data Visualizer (U.S.)"),
   
@@ -69,9 +71,9 @@ ui <- fluidPage(
                                                     "Rape" = "rape_per_100k",
                                                     "Robbery" = "rob_per_100k",
                                                     "Aggravated Assault" = "agg_ass_per_100k"),
-                                        selected = "rape_per_100k")),
+                                        selected = "violent_per_100k")),
                          mainPanel(
-                           plotOutput("plot_crime")))))
+                           plotOutput("violent_per_100k")))))
   
   
 )
