@@ -140,6 +140,7 @@ server <- function(input, output) {
                  y = count_per_100k, 
                  colour = City)) +
       geom_line() +
+      geom_point() +
       labs(x = "Year", 
            y = "Crime rate per 100k",
            colour = "City") +
