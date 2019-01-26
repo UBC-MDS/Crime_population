@@ -16,13 +16,14 @@ tidy_data <- (data %>%
                         rape_per_100k, 
                         rob_per_100k, 
                         agg_ass_per_100k) %>%
-                 mutate(crime_sum=total_pop*count_per_100k/100000) %>%
+                 mutate(count_total=total_pop*count_per_100k/100000) %>%
                  mutate_at(vars(crime_sum), funs(round(., 1))) %>%
                  mutate_at(vars(count_per_100k), funs(round(.,3))))
 
-# Removed unused columns
+# Removed unused columns/cities
 tidy_data <- select(tidy_data, c(ORI,year,department_name,total_pop,crime_type_rate,count_per_100k,crime_sum))
 tidy_data <- tidy_data[ grep("County", tidy_data$department_name, invert = TRUE) , ]
+colnames(tidy_data)[3] <- "City"
 # Omit NA
 tidy_data <- na.omit(tidy_data)
 

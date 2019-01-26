@@ -7,7 +7,7 @@ library(shinythemes)
 
 #load cleaned data
 tidy_data <- read.csv("../data/clean_data.csv")
-cities <- unique(tidy_data$department_name)
+cities <- unique(tidy_data$City)
 years <- unique(tidy_data$year)
 crime <- unique(tidy_data$crime_type_rate)
 
@@ -40,7 +40,7 @@ ui <- fluidPage(
                          mainPanel(
                            # Output: Tabset w/ plot, summary, and table ----
                            tabsetPanel(type = "tabs",
-                                       tabPanel("Plot", plotOutput("plot")),
+                                       tabPanel("Plot", plotlyOutput("plot")),
                                        tabPanel("Table", dataTableOutput("table")))))),
               
               ##======================SECOND PANEL==================     
@@ -49,7 +49,7 @@ ui <- fluidPage(
                          sidebarPanel(width = 3,
                            h5("By Crime Rate (per 100k population)"),
                            # Select cities
-                           selectInput("department_name", "SELECT MULTIPLE CITIES",
+                           selectInput("City", "SELECT MULTIPLE CITIES",
                                        choices = cities,
                                        selected = "Atlanta",
                                        multiple = TRUE,
@@ -87,15 +87,15 @@ server <- function(input, output) {
     crime_filtered_rate <- reactive({tidy_data %>%
         filter(crime_type_rate == input$crime_type_only_one,
                            year == input$year) %>%
-        select(department_name,count_per_100k) %>%
-        mutate(department_name=fct_reorder(department_name,count_per_100k))})
+        select(City,count_per_100k) %>%
+        mutate(City=fct_reorder(City,count_per_100k))})
    
     #when users select "Total (for entire population)"
     crime_filtered_total <- reactive({tidy_data %>%
         filter(crime_type_rate == input$crime_type_only_one,
                year == input$year) %>%
-        select(department_name,crime_sum) %>%
-        mutate(department_name=fct_reorder(department_name,crime_sum))})
+        select(City,crime_sum) %>%
+        mutate(City=fct_reorder(City,crime_sum))})
     
   output$table <- DT::renderDataTable({
     if(input$field == "Total"){
@@ -104,28 +104,28 @@ server <- function(input, output) {
       datatable(crime_filtered_rate(),options=list(lengthMenu=c(10,40,60), pagelength=10))
         }})
   
-  output$plot <- renderPlot(
+  output$plot <- renderPlotly(
     if(input$field == "Total"){
       ggplot()+
       geom_bar(data= crime_filtered_total(),
-               mapping = aes(y = crime_sum, x = department_name),
+               mapping = aes(y = crime_sum, x = City),
                stat='identity',
                fill = "lightskyblue3") +
       theme(axis.text.x = element_text(angle = 60, hjust = 1))+
       labs(y = "Total", x = "City")
   }else{
     crime_filtered_rate() %>% 
-      ggplot(aes(y=count_per_100k,x=department_name)) +
+      ggplot(aes(y=count_per_100k,x=City)) +
       geom_bar(stat='identity', fill="steelblue3") +
       theme(axis.text.x = element_text(angle = 60, hjust = 1))+
       labs(y = "Crime rate per 100k population", x = "City")})
   
   #======================SECOND PANEL==================
-  observe(print(input$department_name))
+  observe(print(input$City))
   observe(print(input$crime_type))
   observe(print(input$year_input))
   crime_filtered2 <- reactive(
-    tidy_data %>% filter(department_name %in%  input$department_name,
+    tidy_data %>% filter(City %in%  input$City,
                          crime_type_rate ==  input$crime_type,
                          year >= input$year_input[1] &
                            year <= input$year_input[2])
@@ -136,7 +136,7 @@ server <- function(input, output) {
     crime_filtered2() %>% 
       ggplot(aes(x = year,
                  y = count_per_100k, 
-                 colour = department_name)) +
+                 colour = City)) +
       stat_summary(fun.y=mean, size=1, geom='line', aes(colour="Average crime rate of \nthe selected cities")) +
       geom_line()+
       theme_bw()+
