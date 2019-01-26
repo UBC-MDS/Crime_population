@@ -73,7 +73,7 @@ ui <- fluidPage(
                                                     "Aggravated Assault" = "agg_ass_per_100k"),
                                         selected = "violent_per_100k")),
                          mainPanel(
-                           plotOutput("plot_crime")))))
+                           plotlyOutput("plot_crime")))))
   
   
 )
@@ -134,7 +134,7 @@ server <- function(input, output) {
   )
   observe(print(crime_filtered2))
   
-  output$plot_crime <- renderPlot(
+  output$plot_crime <- renderPlotly(
     crime_filtered2() %>% 
       ggplot(aes(x = year,
                  y = count_per_100k, 
@@ -147,13 +147,13 @@ server <- function(input, output) {
                    geom='line', 
                    aes(colour="Average crime rate of \nthe selected cities")) +
       theme_bw()+
-      theme(axis.text.x = element_text(size = 18),
-            axis.text.y = element_text(size = 18),
-            axis.title.y = element_text(size = 22),
-            axis.title.x = element_text(size=22),
+      theme(axis.text.x = element_text(size = 14),
+            axis.text.y = element_text(size = 14),
+            axis.title.y = element_text(size = 18),
+            axis.title.x = element_text(size=18),
             axis.line = element_blank(),
-            legend.text = element_text(size = 18),
-            legend.title = element_text(size = 22, face = "bold"))
+            legend.text = element_text(size = 14),
+            legend.title = element_text(size = 18, face = "bold"))
     )
   
 }
