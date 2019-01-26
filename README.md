@@ -1,8 +1,8 @@
 # Crime Data Visualizer
 -------------------------------------------------
 # Contributors
-| :------: | :----------: |
-| [Huijue(Juno) Chen](https://github.com/huijuechen/Crime_population) |[Kera Yucel](https://github.com/K3ra-y/Crime_population)|
+- [Huijue(Juno) Chen](https://github.com/huijuechen/Crime_population) 
+- [Kera Yucel](https://github.com/K3ra-y/Crime_population)
 
 
 # Recent update
