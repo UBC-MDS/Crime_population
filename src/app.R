@@ -147,13 +147,13 @@ server <- function(input, output) {
                    geom='line', 
                    aes(colour="Average crime rate of \nthe selected cities")) +
       theme_bw()+
-      theme(axis.text.x = element_text(size = 14),
-            axis.text.y = element_text(size = 14),
-            axis.title.y = element_text(size = 18),
-            axis.title.x = element_text(size=18),
+      theme(axis.text.x = element_text(size = 14, family="serif"),
+            axis.text.y = element_text(size = 14, family="serif"),
+            axis.title.y = element_text(size = 18, family="serif"),
+            axis.title.x = element_text(size=18, family="serif"),
             axis.line = element_blank(),
-            legend.text = element_text(size = 14),
-            legend.title = element_text(size = 18, face = "bold"))
+            legend.text = element_text(size = 14, family="serif"),
+            legend.title = element_text(size = 18, face = "bold", family="serif"))
     )
   
 }
