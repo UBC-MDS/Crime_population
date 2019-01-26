@@ -2,14 +2,14 @@ library(tidyverse)
 library(dplyr)
 
 # Load data
-dat <- read.csv("../data/ucr_crime_1975_2015.csv")
+data <- read.csv("../data/ucr_crime_1975_2015.csv")
 
-# Filter out the data that was reported less than 12 months
-dat <- dat %>% filter(year>1979)
-na.omit(dat)
+# Filter out the data from 1980-2015
+data <- data %>% filter(year>1979)
+data$months_reported <- NULL
 
 # Re-group columns
-tidy_data <- (dat %>% 
+tidy_data <- (data %>% 
                 gather( key = "crime_type_rate", value = "count_per_100k", 
                         violent_per_100k, 
                         homs_per_100k, 
@@ -22,8 +22,9 @@ tidy_data <- (dat %>%
 
 # Removed unused columns
 tidy_data <- select(tidy_data, c(ORI,year,department_name,total_pop,crime_type_rate,count_per_100k,crime_sum))
-
+tidy_data <- tidy_data[ grep("County", tidy_data$department_name, invert = TRUE) , ]
 # Omit NA
+tidy_data <- na.omit(tidy_data)
 
 # Export CSV
 write_csv(tidy_data, "../data/clean_data.csv")
