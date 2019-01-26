@@ -1,9 +1,10 @@
 # Crime Data Visualizer
 -------------------------------------------------
 # Contributors
-- [Huijue(Juno) Chen](https://github.com/huijuechen/Crime_population) 
-- [Kera Yucel](https://github.com/K3ra-y/Crime_population)
-
+| Name   | Github.com |
+| :------: | :----------: |
+| Huijue(Juno) Chen | [`@huijuechen`](https://github.com/huijuechen/Crime_population) |
+| Kera Yucel  | [`@K3ra-y`](https://github.com/K3ra-y/Crime_population) |
 
 # Recent update
 
@@ -13,8 +14,9 @@ Added the milestone 1 [proposal](https://github.com/UBC-MDS/Crime_population/blo
 
 Added the milestone 2 [write up](https://github.com/UBC-MDS/Crime_population/blob/master/doc/write_up.md) of our app.
 
-Added the milestone 3 [write up](https://github.com/UBC-MDS/Crime_population/blob/master/doc/write_up.md) of our app.
+Giving Written Feedback (milestone 3):
 
-Milestone 3 feedback provided: 
-- [boston-crime-rate](https://github.com/UBC-MDS/DSCI_532-boston-crime-rate/issues/26)
-- [ellognea-ptung-mental-health](https://github.com/UBC-MDS/ellognea-ptung-mental-health/issues/32)
+| Project Name | Feedback |
+| :----------: | :------: |
+| [ellognea-ptung-mental-health](https://github.com/UBC-MDS/ellognea-ptung-mental-health) | [Link](https://github.com/UBC-MDS/ellognea-ptung-mental-health/issues/32) |
+| [DSCI_532-boston-crime-rate](https://github.com/UBC-MDS/DSCI_532-boston-crime-rate) | [Link](https://github.com/UBC-MDS/DSCI_532-boston-crime-rate/issues/26) |
