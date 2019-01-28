@@ -6,7 +6,7 @@ library(forcats)
 library(shinythemes)
 
 #load cleaned data
-tidy_data <- read.csv("clean_data.csv")
+tidy_data <- read.csv("../data/clean_data.csv")
 cities <- unique(tidy_data$City)
 years <- unique(tidy_data$year)
 crime <- unique(tidy_data$crime_type_rate)
