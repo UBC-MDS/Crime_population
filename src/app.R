@@ -6,7 +6,7 @@ library(forcats)
 library(shinythemes)
 
 #load cleaned data
-tidy_data <- read.csv("../data/clean_data.csv")
+tidy_data <- read.csv("clean_data.csv")
 cities <- unique(tidy_data$City)
 years <- unique(tidy_data$year)
 crime <- unique(tidy_data$crime_type_rate)
@@ -51,11 +51,12 @@ ui <- fluidPage(
                          sidebarPanel(width = 3,
                            h5("By Crime Rate (per 100k population)"),
                            # Select cities
-                           selectInput("City", "SELECT MULTIPLE CITIES",
+                           selectInput("City", "SELECT CITY",
                                        choices = cities,
                                        selected = "Atlanta",
                                        multiple = TRUE,
-                                       selectize = TRUE),
+                                       selectize = FALSE),
+                           helpText("Hold Ctrl to select multiple"),
                            br(),
                            # Select range of years
                            sliderInput("year_input", "SELECT YEAR RANGE",
@@ -72,7 +73,13 @@ ui <- fluidPage(
                                                     "Robbery" = "rob_per_100k",
                                                     "Aggravated Assault" = "agg_ass_per_100k"),
                                         selected = "violent_per_100k")),
-                         mainPanel(
+                         
+                         
+                        
+                                     
+                                     mainPanel(
+                                       br(),
+                                       
                            plotlyOutput("plot_crime")))))
   
   
@@ -148,14 +155,14 @@ server <- function(input, output) {
                    geom='line', 
                    aes(colour="Average crime rate of \nthe selected cities")) +
       theme_bw()+
-      theme(axis.text.x = element_text(size = 14, family="serif"),
-            axis.text.y = element_text(size = 14, family="serif"),
-            axis.title.y = element_text(size = 18, family="serif"),
-            axis.title.x = element_text(size=18, family="serif"),
+      theme(axis.text.x = element_text(size = 12, family="serif"),
+            axis.text.y = element_text(size = 12, family="serif"),
+            axis.title.y = element_text(size = 14, family="serif"),
+            axis.title.x = element_text(size=14, family="serif"),
             axis.line = element_blank(),
-            legend.text = element_text(size = 14, family="serif"),
-            legend.title = element_text(size = 18, face = "bold", family="serif"))
-    )
+            legend.text = element_text(size = 12, family="serif"),
+            legend.title = element_text(size = 14, face = "bold", family="serif")
+            ))
   
 }
 
