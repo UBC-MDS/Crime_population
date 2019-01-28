@@ -6,7 +6,7 @@ library(forcats)
 library(shinythemes)
 
 #load cleaned data
-tidy_data <- read.csv("../data/clean_data.csv")
+tidy_data <- read.csv("data/clean_data.csv")
 cities <- unique(tidy_data$City)
 years <- unique(tidy_data$year)
 crime <- unique(tidy_data$crime_type_rate)
@@ -80,10 +80,32 @@ ui <- fluidPage(
                                      mainPanel(
                                        br(),
                                        
-                           plotlyOutput("plot_crime")))))
+                           plotlyOutput("plot_crime")))),
+  
+  ## =================== THIRD PANEL : About  ==================
+            tabPanel("About", 
+                     br(), 
+                     "Crime is a problem in major cities where it causes negative emotional and physical effects and requires", br(),
+                      "costly solutions for the public. This app aims to help explore violent crime trends across cities over time.",
+                     br(), br(),
+                     span("Data source:",
+                          tags$a(href = "https://www.themarshallproject.org/", "The Marshall Project")),
+                     br(),
+                     span("Github Repository:",
+                          tags$a(href = "https://github.com/UBC-MDS/Crime_population", "Crime_population")),
+                     br(),
+                     span("Developers:",
+                          tags$a(href = "https://github.com/huijuechen", "Juno Chen"),
+                          "and",
+                          tags$a(href = "https://github.com/K3ra-y", "Kera Yucel")
+                     )
+                
+                     
+                     )
+                     
   
   
-)
+))
 
 #set up server
 
