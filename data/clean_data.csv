@@ -1,4 +1,4 @@
-ORI,year,City,total_pop,crime_type_rate,count_per_100k,crime_sum
+ORI,year,City,total_pop,crime_type_rate,incidents_per_100k_population,incidents_for_total_population
 NM00101,1980,"Albuquerque, N.M.",328837,violent_per_100k,854.527,2810
 TX22001,1980,"Arlington, Texas",161192,violent_per_100k,500.025,806
 GAAPD00,1980,Atlanta,422474,violent_per_100k,2621.463,11075

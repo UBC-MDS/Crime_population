@@ -6,7 +6,7 @@ library(forcats)
 library(shinythemes)
 
 #load cleaned data
-tidy_data <- read.csv("data/clean_data.csv")
+tidy_data <- read.csv("../data/clean_data.csv")
 cities <- unique(tidy_data$City)
 years <- unique(tidy_data$year)
 crime <- unique(tidy_data$crime_type_rate)
@@ -25,6 +25,7 @@ ui <- fluidPage(
               tabPanel("Total Comparison",
                        sidebarLayout(
                          sidebarPanel(width = 3,
+                           h5("To compare the crime data of all major cities in United States"),
                            selectInput("year", "SELECT YEAR", multiple = FALSE,
                                        sort(unique(tidy_data$year)),selected = "2010"),
                            radioButtons("field", 
@@ -74,13 +75,8 @@ ui <- fluidPage(
                                                     "Aggravated Assault" = "agg_ass_per_100k"),
                                         selected = "violent_per_100k")),
                          
-                         
-                        
-                                     
-                                     mainPanel(
-                                       br(),
-                                       
-                           plotlyOutput("plot_crime")))),
+                        mainPanel(br(),
+                                  plotlyOutput("plot_crime")))),
   
   ## =================== THIRD PANEL : About  ==================
             tabPanel("About", 
@@ -118,15 +114,15 @@ server <- function(input, output) {
     crime_filtered_rate <- reactive({tidy_data %>%
         filter(crime_type_rate == input$crime_type_only_one,
                            year == input$year) %>%
-        select(City,count_per_100k) %>%
-        mutate(City=fct_reorder(City,count_per_100k))})
+        select(City,incidents_per_100k_population) %>%
+        mutate(City=fct_reorder(City,incidents_per_100k_population))})
    
     #when users select "Total (for entire population)"
     crime_filtered_total <- reactive({tidy_data %>%
         filter(crime_type_rate == input$crime_type_only_one,
                year == input$year) %>%
-        select(City,crime_sum) %>%
-        mutate(City=fct_reorder(City,crime_sum))})
+        select(City,incidents_for_total_population) %>%
+        mutate(City=fct_reorder(City,incidents_for_total_population))})
     
   output$table <- DT::renderDataTable({
     if(input$field == "Total"){
@@ -139,15 +135,16 @@ server <- function(input, output) {
     if(input$field == "Total"){
       ggplot()+
       geom_bar(data= crime_filtered_total(),
-               mapping = aes(y = crime_sum, x = City),
+               mapping = aes(y = incidents_for_total_population, x = City),
                stat='identity',
-               fill = "lightskyblue3") +
+               fill = "tomato2",
+               alpha=0.8) +
       theme(axis.text.x = element_text(angle = 60, hjust = 1))+
       labs(y = "Total", x = "City")
   }else{
     crime_filtered_rate() %>% 
-      ggplot(aes(y=count_per_100k,x=City)) +
-      geom_bar(stat='identity', fill="steelblue3") +
+      ggplot(aes(y=incidents_per_100k_population,x=City)) +
+      geom_bar(stat='identity', fill = "tomato2", alpha=0.8) +
       theme(axis.text.x = element_text(angle = 60, hjust = 1))+
       labs(y = "Crime rate per 100k population", x = "City")})
   
@@ -166,7 +163,7 @@ server <- function(input, output) {
   output$plot_crime <- renderPlotly(
     crime_filtered2() %>% 
       ggplot(aes(x = year,
-                 y = count_per_100k, 
+                 y = incidents_per_100k_population, 
                  colour = City)) +
       geom_line() +
       geom_point() +
@@ -176,15 +173,7 @@ server <- function(input, output) {
       stat_summary(fun.y=mean, size=1, 
                    geom='line', 
                    aes(colour="Average crime rate of \nthe selected cities")) +
-      theme_bw()+
-      theme(axis.text.x = element_text(size = 12, family="serif"),
-            axis.text.y = element_text(size = 12, family="serif"),
-            axis.title.y = element_text(size = 14, family="serif"),
-            axis.title.x = element_text(size=14, family="serif"),
-            axis.line = element_blank(),
-            legend.text = element_text(size = 12, family="serif"),
-            legend.title = element_text(size = 14, face = "bold", family="serif")
-            ))
+      theme_bw())
   
 }
 
