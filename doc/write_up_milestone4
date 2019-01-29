@@ -1,0 +1,15 @@
+# Project Milestone 4: Write-up
+
+
+## * What changes did you decide to implement given the time limit, and why do you think this is the best thing to focus on?*
+
+The application was missing information on where the data was sourced from and the repository link along with the developers' accounts. The information was added into a third panel in the application with matching color theme and graphics colors.
+
+## *If you were to make the app again from scratch (or some other app in general), what would you do differently?*
+
+A time series analysis and their reflection the application would have to take the trend to next level. Given the time frame we could not deliver statistical meanings behind the trends. If we had the experience we gained during development, we could have had time to implement statistical analysis into the application.
+
+
+## *What were the greatest challenges you faced in creating the final product?*
+
+Shiny is user and developer friendly. Lack of experience was an obstacle at the beginning however we overcame this barrier during development.

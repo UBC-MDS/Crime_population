@@ -173,7 +173,15 @@ server <- function(input, output) {
       stat_summary(fun.y=mean, size=1, 
                    geom='line', 
                    aes(colour="Average crime rate of \nthe selected cities")) +
-      theme_bw())
+      theme_bw()+
+      theme(axis.text.x = element_text(size = 12),
+            axis.text.y = element_text(size = 12),
+            axis.title.y = element_text(size = 14),
+            axis.title.x = element_text(size=14),
+            axis.line = element_blank(),
+            legend.text = element_text(size = 12),
+            legend.title = element_text(size = 14, face = "bold"))
+      )
   
 }
 

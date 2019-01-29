@@ -8,13 +8,15 @@
 
 # Recent update
 
-Published link of the [shine app](https://yucelk.shinyapps.io/Crime_APP/).
+Published link of the [Shiny app](https://yucelk.shinyapps.io/Crime_APP/).
 
 Added the milestone 1 [proposal](https://github.com/UBC-MDS/Crime_population/blob/master/doc/proposal.md) of our app.
 
 Added the [milestone 2 write-up](https://github.com/UBC-MDS/Crime_population/blob/master/doc/write_up.md) of our app.
 
-Added the [milestone 3 write-up](https://github.com/K3ra-y/Crime_population/blob/master/doc/write_up_milestone3.md) of our app.
+Added the [milestone 3 write-up](https://github.com/UBC-MDS/Crime_population/blob/master/doc/write_up_milestone3.md) of our app.
+
+Added the [milestone 4 write-up](https://github.com/UBC-MDS/Crime_population/blob/master/doc/write_up_milestone4.md) of our app.
 
 Giving Written Feedback (milestone 3):
 
