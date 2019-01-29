@@ -10,18 +10,18 @@ data$months_reported <- NULL
 
 # Re-group columns
 tidy_data <- (data %>% 
-                gather( key = "crime_type_rate", value = "count_per_100k", 
+                gather( key = "crime_type_rate", value = "incidents_per_100k_population", 
                         violent_per_100k, 
                         homs_per_100k, 
                         rape_per_100k, 
                         rob_per_100k, 
                         agg_ass_per_100k) %>%
-                 mutate(count_total=total_pop*count_per_100k/100000) %>%
-                 mutate_at(vars(crime_sum), funs(round(., 1))) %>%
-                 mutate_at(vars(count_per_100k), funs(round(.,3))))
+                 mutate(incidents_for_total_population=total_pop*incidents_per_100k_population/100000) %>%
+                 mutate_at(vars(incidents_for_total_population), funs(round(., 1))) %>%
+                 mutate_at(vars(incidents_per_100k_population), funs(round(.,3))))
 
 # Removed unused columns/cities
-tidy_data <- select(tidy_data, c(ORI,year,department_name,total_pop,crime_type_rate,count_per_100k,crime_sum))
+tidy_data <- select(tidy_data, c(ORI,year,department_name,total_pop,crime_type_rate,incidents_per_100k_population,incidents_for_total_population))
 tidy_data <- tidy_data[ grep("County", tidy_data$department_name, invert = TRUE) , ]
 colnames(tidy_data)[3] <- "City"
 # Omit NA
