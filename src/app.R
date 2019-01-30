@@ -125,6 +125,7 @@ server <- function(input, output) {
                 datatable(crime_filtered_rate(),options=list(lengthMenu=c(10,40,60), pagelength=10))
                   }})
             
+            ##=============Define output==============
             output$plot <- renderPlotly(
               if(input$field == "Total"){
                 ggplot()+
@@ -134,7 +135,7 @@ server <- function(input, output) {
                          fill = "tomato2",
                          alpha=0.8) +
                 theme(axis.text.x = element_text(angle = 60, hjust = 1))+
-                labs(y = "Total", x = "City")
+                labs(y = "Crime incidents for all population", x = "City")
             }else{
               crime_filtered_rate() %>% 
                 ggplot(aes(y=incidents_per_100k_population,x=City)) +
