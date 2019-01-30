@@ -25,7 +25,7 @@ ui <- fluidPage(
               tabPanel("Total Comparison",
                        sidebarLayout(
                          sidebarPanel(width = 3,
-                           h5("To compare the crime data of all major cities in United States"),
+                           h5("To compare the crime data of all major cities in the United States"),
                            selectInput("year", "SELECT YEAR", multiple = FALSE,
                                        sort(unique(tidy_data$year)),selected = "2010"),
                            radioButtons("field", 
@@ -134,14 +134,20 @@ server <- function(input, output) {
                          stat='identity',
                          fill = "tomato2",
                          alpha=0.8) +
-                theme(axis.text.x = element_text(angle = 60, hjust = 1))+
-                labs(y = "Crime incidents for all population", x = "")
+                theme(axis.text.x = element_text(angle = 60, hjust = 1),
+                      axis.title.y = element_text(vjust=-2)) +
+                labs(title = "Crime incidents per total population",
+                     x = "",
+                     y = "Number of incidents")
             }else{
               crime_filtered_rate() %>% 
                 ggplot(aes(y=incidents_per_100k_population,x=City)) +
                 geom_bar(stat='identity', fill = "tomato2", alpha=0.8) +
-                theme(axis.text.x = element_text(angle = 60, hjust = 1))+
-                labs(y = "Crime rate per 100k population", x = "")})
+                theme(axis.text.x = element_text(angle = 60, hjust = 1),
+                      axis.title.y=element_text(hjust = 3))+
+                labs(title = "Crime rate per 100k population",
+                     x = "",
+                     y = "Number of incidents")})
             
             #======================SECOND PANEL==================
             observe(print(input$City))
