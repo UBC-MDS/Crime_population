@@ -135,13 +135,13 @@ server <- function(input, output) {
                          fill = "tomato2",
                          alpha=0.8) +
                 theme(axis.text.x = element_text(angle = 60, hjust = 1))+
-                labs(y = "Crime incidents for all population", x = "City")
+                labs(y = "Crime incidents for all population", x = "")
             }else{
               crime_filtered_rate() %>% 
                 ggplot(aes(y=incidents_per_100k_population,x=City)) +
                 geom_bar(stat='identity', fill = "tomato2", alpha=0.8) +
                 theme(axis.text.x = element_text(angle = 60, hjust = 1))+
-                labs(y = "Crime rate per 100k population", x = "City")})
+                labs(y = "Crime rate per 100k population", x = "")})
             
             #======================SECOND PANEL==================
             observe(print(input$City))
